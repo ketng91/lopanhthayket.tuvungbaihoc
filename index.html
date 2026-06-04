@@ -220,6 +220,33 @@ select {
     margin-left: 10px;
   }
 
+
+.audio-box{
+  width:80%;
+  margin:40px auto;
+  padding:25px;
+  background:#e3fdfd;
+  border-radius:12px;
+  text-align:center;
+}
+
+.audio-box h2{
+  color:#7a4e3e;
+  margin-bottom:15px;
+}
+
+.audio-box audio{
+  width:100%;
+  max-width:700px;
+}
+
+.audio-note{
+  margin-top:10px;
+  color:#666;
+  font-size:18px;
+}
+
+
   footer {
     font-size: 22px;
     margin-top: 40px;
@@ -328,6 +355,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <!-- Bài tập -->
 <div class="exercise" id="exercise"></div>
+
+
+<!-- AUDIO BÀI HỌC -->
+<div class="audio-box">
+  <h2>🎧 Audio từ vựng bài học</h2>
+
+  <audio id="lessonAudio" controls>
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <div class="audio-note">
+    Nghe và đọc theo từ vựng của bài học hiện tại
+  </div>
+</div>
 
 <footer>Chúc mừng bạn đã hoàn thành bài học!</footer>
 <script>
@@ -455,6 +496,13 @@ const data = {
 
 };
 
+const lessonAudios = {
+  1: "https://drive.google.com/uc?export=download&id=15W3rxKOiKBouSgFCGWVmDpXuxIn8nmgb",
+  2: "LINK_AUDIO_BAI_2",
+  3: "LINK_AUDIO_BAI_3",
+  4: "LINK_AUDIO_BAI_4",
+  5: "LINK_AUDIO_BAI_5"
+};
 
 let currList = 1, listCopy=[], index=0;
 
@@ -464,6 +512,14 @@ let knownCount = 0;
 /********** LOAD LIST **********/
 function loadList(){
   currList = document.getElementById("wordList").value;
+
+  const audio = document.getElementById("lessonAudio");
+
+  if (lessonAudios[currList]) {
+    audio.src = lessonAudios[currList];
+    audio.load();
+  }
+
   listCopy = [...data[currList]];
   totalWords = listCopy.length;
   knownCount = 0;
