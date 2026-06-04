@@ -63,10 +63,22 @@ header {
   white-space: nowrap;
 }
 /* ===== TOP SELECT ===== */
-.top-select {
-  display: flex;
-  justify-content: flex-start;
-  margin: 20px 40px;
+.top-bar{
+  width:85%;
+  margin:20px auto;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.top-bar select{
+  min-width:240px;
+  flex-shrink:0;
+}
+
+.top-bar audio{
+  flex:1;
+  height:42px;
 }
 
 select {
@@ -82,7 +94,7 @@ select {
 /* MEDIA QUERY cho điện thoại */
 @media (max-width: 480px) {
 
-    .header-center {
+  .header-center {
     flex-basis: 100%;
     order: 2;
     text-align: center;
@@ -93,6 +105,21 @@ select {
 
   .header-left {
     order: 1;
+  }
+
+  /* Lesson + Audio xuống hàng trên điện thoại */
+  .top-bar{
+    flex-direction: column;
+    align-items: stretch;
+    width: 90%;
+  }
+
+  .top-bar select{
+    width: 100%;
+  }
+
+  .top-bar audio{
+    width: 100%;
   }
 }
 
@@ -109,6 +136,8 @@ select {
     font-size: 22px;
   }
 }
+
+
 
 
   .top-select {
@@ -287,23 +316,22 @@ select {
 </header>
 
 <!-- Bộ chọn -->
-<div class="top-select">
+<!-- Bộ chọn + Audio -->
+<div class="top-bar">
+
   <select id="wordList">
     <option value="1">Từ vựng bài học - 1</option>
     <option value="2">Từ vựng bài học - 2</option>
     <option value="3">Từ vựng bài học - 3</option>
     <option value="4">Từ vựng bài học - 4</option>
     <option value="5">Từ vựng bài học - 5</option>
-
-
-
-
-
-
-
   </select>
-</div>
 
+  <audio id="lessonAudio" controls>
+    <source src="" type="audio/mpeg">
+  </audio>
+
+</div>
 
 
 <script>
@@ -357,18 +385,6 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="exercise" id="exercise"></div>
 
 
-<!-- AUDIO BÀI HỌC -->
-<div class="audio-box">
-  <h2>🎧 Audio từ vựng bài học</h2>
-
-  <audio id="lessonAudio" controls>
-    <source src="" type="audio/mpeg">
-  </audio>
-
-  <div class="audio-note">
-    Nghe và đọc theo từ vựng của bài học hiện tại
-  </div>
-</div>
 
 <footer>Chúc mừng bạn đã hoàn thành bài học!</footer>
 <script>
