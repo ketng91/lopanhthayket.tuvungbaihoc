@@ -295,6 +295,41 @@ select {
   color:#ff6b6b;
 }
 
+.word-text{
+    display:flex;
+    align-items:flex-start;
+    width:100%;
+}
+
+.en-word{
+    width:420px;      /* chỉnh tăng giảm */
+    flex-shrink:0;
+    font-weight:600;
+}
+
+.vn-word{
+    flex:1;
+}
+
+@media (max-width:768px){
+
+  .word-text{
+      display:inline;
+  }
+
+  .en-word{
+      width:auto;
+      min-width:auto;
+      display:inline;
+      font-weight:600;
+  }
+
+  .vn-word{
+      display:inline;
+  }
+
+}
+
   .confetti {
     position: fixed;
     top: 50%;
@@ -343,7 +378,8 @@ select {
     <option value="11">Từ vựng bài học -11</option>
     <option value="13">Từ vựng bài học -13</option>
     <option value="14">Từ vựng bài học -14</option>
-    <option value="15">Từ vựng bài học -15</option>
+    <option value="16">Từ vựng bài học -16</option>
+    <option value="17">Từ vựng bài học -17</option>
 
 
   </select>
@@ -1279,8 +1315,10 @@ const data = {
   { en: "infrastructure (n) /ˈɪnfrəstrʌktʃə(r)/", vn: "cơ sở hạ tầng (đường xá, cầu cống, hệ thống mạng...)", tick: false }
   ],
   
+16: [
 
-15: [
+  ],
+17: [
 
   ],
 
@@ -1400,14 +1438,21 @@ function renderWords(){
     box.innerHTML += `
       <div class="word-row">
 
-        <span>
-          ${item.en}: ${item.vn}
+<span class="word-text">
 
-          <i class="fa-solid fa-volume-high speaker-icon"
-             onclick="event.stopPropagation();speakWord(\`${item.en}\`)">
-          </i>
+  <span class="en-word">
+    ${item.en}:
+  </span>
 
-        </span>
+  <span class="vn-word">
+    ${item.vn}
+  </span>
+
+  <i class="fa-solid fa-volume-high speaker-icon"
+     onclick="event.stopPropagation();speakWord(\`${item.en}\`)">
+  </i>
+
+</span>
 
         <input
           type="checkbox"
