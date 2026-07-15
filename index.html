@@ -377,9 +377,15 @@ select {
     <option value="10">Từ vựng bài học -10</option>
     <option value="11">Từ vựng bài học -11</option>
     <option value="13">Từ vựng bài học -13</option>
-    <option value="14">Từ vựng bài học -14</option>
-    <option value="16">Từ vựng bài học -16</option>
-    <option value="17">Từ vựng bài học -17</option>
+    <option value="14A">Từ vựng bài học -14A</option>
+    <option value="14B">Từ vựng bài học -14B</option>
+    <option value="14C">Từ vựng bài học -14C</option>
+    <option value="19A">Từ vựng bài học -19A</option>
+    <option value="19B">Từ vựng bài học -19B</option>
+    <option value="19C">Từ vựng bài học -19C</option>
+    <option value="20">Từ vựng bài học -20</option>
+    <option value="21">Từ vựng bài học -21</option>
+    <option value="22">Từ vựng bài học -22</option>
 
 
   </select>
@@ -466,9 +472,26 @@ const selectEl = document.getElementById("wordList");
 function sortOptionsByNumber() {
   const opts = Array.from(selectEl.options);
 
-  opts.sort((a, b) => {
-    return Number(a.value) - Number(b.value);
-  });
+opts.sort((a, b) => {
+
+    const getKey = v => {
+        const m = v.match(/^(\d+)([A-Z]?)$/);
+
+        return {
+            num: parseInt(m[1]),
+            letter: m[2] || ""
+        };
+    };
+
+    const x = getKey(a.value);
+    const y = getKey(b.value);
+
+    if (x.num !== y.num)
+        return x.num - y.num;
+
+    return x.letter.localeCompare(y.letter);
+
+});
 
   selectEl.innerHTML = "";
   opts.forEach(o => selectEl.appendChild(o));
@@ -594,7 +617,6 @@ const data = {
   { en: "marine (adj) /məˈriːn/", vn: "thuộc về biển, sống dưới biển", tick: false },
   { en: "throw away (phr v)", vn: "vứt đi, liệng đi (rác hoặc cơ hội)", tick: false },
   { en: "reusable (adj) /ˌriːˈjuːzəbl/", vn: "có thể tái sử dụng nhiều lần", tick: false },
-  { en: "alternative (n/adj) /ɔːlˈtɜːnətɪv/", vn: "giải pháp thay thế (n); mang tính thay thế, khác (adj)", tick: false },
   { en: "break down (phr v)", vn: "phân hủy (chất thải), hỏng hóc (máy móc), suy sụp (tinh thần)", tick: false },
   { en: "greenhouse gases (n phr)", vn: "khí nhà kính (các loại khí gây hiệu ứng nhà kính như CO2, CH4)", tick: false },
   { en: "pollute (v) /pəˈluːt/", vn: "làm ô nhiễm, làm bẩn môi trường", tick: false },
@@ -613,7 +635,6 @@ const data = {
   { en: "hunt (v/n) /hʌnt/", vn: "săn bắn, tìm kiếm (v); cuộc đi săn (n)", tick: false },
   { en: "damage (v/n) /ˈdæmɪdʒ/", vn: "gây tổn hại, làm hư hại (v); sự thiệt hại, tổn thất (n)", tick: false },
   { en: "rainforest (n) /ˈreɪnfɒrɪst/", vn: "rừng mưa nhiệt đới", tick: false },
-  { en: "erode (v) /ɪˈrəʊd/", vn: "xói mòn, bào mòn (đất đai/bờ biển), làm suy giảm dần", tick: false },
   { en: "maintain (v) /meɪnˈteɪn/", vn: "duy trì, bảo dưỡng (hệ thống/trạng thái tốt ổn định)", tick: false },
   { en: "carbon dioxide (n) /ˌkɑːbən daɪˈɒksaɪd/", vn: "khí CO2", tick: false },
   { en: "global warming (n phr)", vn: "hiện tượng nóng lên toàn cầu", tick: false },
@@ -1112,7 +1133,7 @@ const data = {
 
   ],
 
-  14: [
+"14A": [
 { en: "ice cap (n phr)", vn: "chỏm băng, sông băng bao phủ vùng đỉnh núi hoặc địa cực", tick: false },
   { en: "glacier (n) /ˈɡlæsiə(r)/", vn: "sông băng, tảng băng trôi khổng lồ (tích tụ từ tuyết qua hàng ngàn năm)", tick: false },
   { en: "polar (adj) /ˈpəʊlə(r)/", vn: "thuộc về vùng địa cực (Ví dụ: polar bear - gấu Bắc Cực)", tick: false },
@@ -1191,6 +1212,9 @@ const data = {
   { en: "untreated (adj) /ˌʌnˈtriːtɪd/", vn: "chưa được xử lý, để hoang dã (Ví dụ: untreated sewage - nước thải chưa xử lý)", tick: false },
   { en: "industrial (adj) /ɪnˈdʌstriəl/", vn: "thuộc về công nghiệp (Ví dụ: industrial waste - chất thải công nghiệp)", tick: false },
   { en: "risk (n/v) /rɪsk/", vn: "rủi ro, mối nguy hiểm (n); mạo hiểm, liều lĩnh làm gì (v - cấu trúc: risk + V-ing)", tick: false },
+  ],
+
+"14B": [
   { en: "gene (n) /dʒiːn/", vn: "gen di truyền", tick: false },
   { en: "genetic (adj) /dʒəˈnetɪk/", vn: "thuộc về di truyền học, thuộc về gen", tick: false },
   { en: "mutate (v) /mjuːˈteɪt/", vn: "đột biến, biến đổi cấu trúc gen", tick: false },
@@ -1238,7 +1262,8 @@ const data = {
 { en: "rent (v/n) /rent/", vn: "thuê, mướn (nhà, xe) (v); tiền thuê nhà, khoản tiền thuê (n)", tick: false },
   { en: "university (n) /ˌjuːnɪˈvɜːsəti/", vn: "trường đại học (hệ đào tạo 4-5 năm, cấp bằng cử nhân trở lên)", tick: false },
   { en: "academic (adj) /ˌækəˈdemɪk/", vn: "thuộc học thuật, thuộc nhà trường, có tính lý thuyết", tick: false },
-  { en: "academic performance (n phr)", vn: "kết quả học tập, học lực, phong độ học tập trên lớp", tick: false },
+  { en: "performance (n) /pəˈfɔːməns/", vn: "màn trình diễn, phong độ, kết quả thể hiện/làm bài (động từ: perform)", tick: false },
+ { en: "academic performance (n phr)", vn: "kết quả học tập, học lực, phong độ học tập trên lớp", tick: false },
   { en: "honesty (n) /ˈɒnəsti/", vn: "tính trung thực, sự thành thật (lưu ý âm h câm)", tick: false },
   { en: "dishonesty (n) /dɪsˈɒnəsti/", vn: "sự bất chính, tính không trung thực, gian lận", tick: false },
   { en: "such as (idiom)", vn: "như là, chẳng hạn như (dùng để liệt kê ví dụ, bằng với like)", tick: false },
@@ -1247,6 +1272,10 @@ const data = {
   { en: "vital (adj) /ˈvaɪtl/", vn: "trọng yếu, sống còn, cực kỳ quan trọng (bằng với crucial / essential)", tick: false },
   { en: "foundation (n) /faʊnˈdeɪʃn/", vn: "nền móng, nền tảng, tổ chức từ thiện/quỹ tài trợ", tick: false },
   { en: "foundational (adj) /faʊnˈdeɪʃənl/", vn: "mang tính nền tảng, cơ bản cốt lõi", tick: false },
+
+
+  ],
+"14C": [
   { en: "specialise in (v phr)", vn: "chuyên về, chuyên sâu vào lĩnh vực nào (tiếng Mỹ viết là specialize)", tick: false },
   { en: "specialised (adj) /ˈspeʃəlaɪzd/", vn: "chuyên dụng, chuyên sâu, đặc chủng (tiếng Mỹ viết là specialized)", tick: false },
   { en: "training (n) /ˈtreɪnɪŋ/", vn: "sự đào tạo, quá trình huấn luyện kỹ năng (danh từ không đếm được)", tick: false },
@@ -1258,7 +1287,7 @@ const data = {
   { en: "curriculum (n) /kəˈrɪkjələm/", vn: "chương trình giảng dạy, khung học trình (số nhiều là curricula)", tick: false },
   { en: "guideline (n) /ˈɡaɪdlaɪn/", vn: "hướng dẫn, nguyên tắc chỉ đạo, đường lối (thường dùng số nhiều)", tick: false },
   { en: "adapt (to) (v phr) /əˈdæpt/", vn: "thích nghi với, điều chỉnh cho phù hợp với hoàn cảnh mới", tick: false },
-  { en: "fit (v/adj) /fɪt/", vn: "vừa vặn, phù hợp (v); cân đối, khỏe khoắn (adj)", tick: false },
+{ en: "fit (v/adj) /fɪt/", vn: "vừa vặn, phù hợp (v); cân đối, khỏe khoắn (adj)", tick: false },
   { en: "pace (n) /peɪs/", vn: "tốc độ, nhịp độ (Ví dụ: learning pace - nhịp độ học tập)", tick: false },
   { en: "submit (v) /səbˈmɪt/", vn: "nộp (bài, đơn), quy phục (đồng nghĩa với hand in)", tick: false },
   { en: "fail to do sth (v phr)", vn: "không làm được việc gì, thất bại trong việc gì (luôn đi với to-V)", tick: false },
@@ -1313,15 +1342,202 @@ const data = {
   { en: "region (n) /ˈriːdʒən/", vn: "vùng, miền, khu vực địa lý", tick: false },
   { en: "due to (prep)", vn: "bởi vì, do tại (sau là cụm danh từ/V-ing, bằng với because of / owing to)", tick: false },
   { en: "infrastructure (n) /ˈɪnfrəstrʌktʃə(r)/", vn: "cơ sở hạ tầng (đường xá, cầu cống, hệ thống mạng...)", tick: false }
-  ],
-  
-16: [
-
-  ],
-17: [
 
   ],
 
+
+"19A": [
+{ en: "anxious (adj) /ˈæŋkʃəs/", vn: "lo âu, bồn chồn (danh từ: anxiety)", tick: false },
+  { en: "expectation (n) /ˌekspekˈteɪʃn/", vn: "sự kỳ vọng, mong đợi (động từ: expect)", tick: false },
+  { en: "pressure (n/v) /ˈpreʃə(r)/", vn: "áp lực, sức ép; gây áp lực", tick: false },
+  { en: "revision (n) /rɪˈvɪʒn/", vn: "sự ôn tập, xem lại bài (động từ: revise)", tick: false },
+  { en: "focused (adj) /ˈfəʊkəst/", vn: "tập trung cao độ, dồn chú ý", tick: false },
+  { en: "distracted (adj) /dɪˈstræktɪd/", vn: "bị xao nhãng, phân tâm (động từ: distract)", tick: false },
+  { en: "concentration (n) /ˌkɒnsnˈtreɪʃn/", vn: "sự tập trung tinh thần (động từ: concentrate)", tick: false },
+  { en: "increasingly (adv) /ɪnˈkriːsɪŋli/", vn: "ngày càng tăng, ngày một hơn", tick: false },
+  { en: "access (v/n) /ˈækses/", vn: "truy cập, tiếp cận; quyền tiếp cận (cấu trúc: have access to)", tick: false },
+  { en: "limit (v/n) /ˈlɪmɪt/", vn: "giới hạn, hạn chế; hạn mức", tick: false },
+  { en: "interaction (n) /ˌɪntərˈækʃn/", vn: "sự tương tác, tác động qua lại (động từ: interact)", tick: false },
+  { en: "communication (n) /kəˌmjuːnɪˈkeɪʃn/", vn: "sự giao tiếp, truyền thông (động từ: communicate)", tick: false },
+  { en: "motivated (adj) /ˈməʊtɪveɪtɪd/", vn: "có động lực, quyết tâm (động từ: motivate)", tick: false },
+  { en: "blended (adj) /ˈblendɪd/", vn: "hòa trộn, kết hợp (ví dụ: blended learning - học trực tiếp và trực tuyến)", tick: false },
+  { en: "homework (n) /ˈhəʊmwɜːk/", vn: "bài tập về nhà (danh từ không đếm được)", tick: false },
+  { en: "reinforce (v) /ˌriːɪnˈfɔːs/", vn: "củng cố, tăng cường (kiến thức, lập luận)", tick: false },
+  { en: "practice (n/v) /ˈpræktɪs/", vn: "sự luyện tập, thực hành; luyện tập", tick: false },
+  { en: "burdensome (adj) /ˈbɜːdnsəm/", vn: "nặng nề, gánh nặng (danh từ: burden)", tick: false },
+  { en: "attitude (n) /ˈætɪtjuːd/", vn: "thái độ, quan điểm (cấu trúc: attitude towards)", tick: false },
+  { en: "balance (n/v) /ˈbæləns/", vn: "sự cân bằng, trạng thái cân đối; làm cân bằng", tick: false },
+  { en: "cooperation (n) /kəʊˌɒpəˈreɪʃn/", vn: "sự hợp tác, chung sức (động từ: cooperate)", tick: false },
+  { en: "reluctant (adj) /rɪˈlʌktənt/", vn: "ngần ngại, miễn cưỡng (danh từ: reluctance)", tick: false },
+  { en: "shy (adj) /ʃaɪ/", vn: "nhút nhát, e thẹn", tick: false },
+  { en: "supportive (adj) /səˈpɔːtɪv/", vn: "luôn ủng hộ, nâng đỡ, giúp đỡ", tick: false },
+  { en: "standardised (adj) /ˈstændədaɪzd/", vn: "được tiêu chuẩn hóa, chuẩn hóa (ví dụ: standardized test)", tick: false },
+  { en: "measurable (adj) /ˈmeʒərəbl/", vn: "có thể đo lường được, rõ ràng", tick: false },
+  { en: "compare (v) /kəmˈpeə(r)/", vn: "so sánh, đối chiếu (cấu trúc: compare A with/to B)", tick: false },
+  { en: "critic (n) /ˈkrɪtɪk/", vn: "nhà phê bình, người chỉ trích phản biện", tick: false },
+  { en: "recognise (v) /ˈrekəɡnaɪz/", vn: "công nhận (thành tích); nhận ra (người quen)", tick: false },
+  { en: "alternative (adj/n) /ɔːlˈtɜːnətɪv/", vn: "thay thế, mang tính lựa chọn khác; giải pháp thay thế", tick: false },
+  { en: "success (n) /səkˈses/", vn: "sự thành công, kết quả thắng lợi", tick: false },
+  { en: "organisation (n) /ˌɔːɡənaɪˈzeɪʃn/", vn: "tổ chức, cơ quan; sự sắp xếp khoa học", tick: false },
+  { en: "hinder (v) /ˈhɪndə(r)/", vn: "cản trở, kìm hãm phát triển (danh từ: hindrance)", tick: false },
+  { en: "deadline (n) /ˈdedlaɪn/", vn: "hạn chót, thời hạn cuối cùng", tick: false },
+  { en: "emphasise (v) /ˈemfəsaɪz/", vn: "nhấn mạnh, làm nổi bật (danh từ: emphasis)", tick: false },
+  { en: "vocabulary (n) /vəˈkæbjələri/", vn: "vốn từ vựng, hệ thống từ ngữ", tick: false },
+  { en: "comprehension (n) /ˌkɒmprɪˈhenʃn/", vn: "sự thấu hiểu, năng lực đọc hiểu (động từ: comprehend)", tick: false },
+  { en: "tedious (adj) /ˈtiːdiəs/", vn: "tẻ nhạt, chán ngắt, mệt mỏi (bằng nghĩa: boring/dull)", tick: false },
+  { en: "exposure (n) /ɪkˈspəʊʒə(r)/", vn: "sự tiếp xúc, cọ xát môi trường (động từ: expose)", tick: false },
+  { en: "acceptable (adj) /əkˈseptəbl/", vn: "có thể chấp nhận được, ở mức vừa vặn", tick: false },
+  { en: "chaotic (adj) /keɪˈɒtɪk/", vn: "hỗn loạn, vô trật tự (danh từ: chaos)", tick: false },
+  { en: "consistent (adj) /kənˈsɪstənt/", vn: "nhất quán, ổn định, trước sau như một (danh từ: consistency)", tick: false },
+  { en: "feedback (n) /ˈfiːdbæk/", vn: "nhận xét, phản hồi (danh từ không đếm được)", tick: false },
+  { en: "constructive (adj) /kənˈstrʌktɪv/", vn: "mang tính xây dựng, giúp cải thiện (ví dụ: constructive feedback)", tick: false },
+  { en: "discouraging (adj) /dɪsˈkʌrɪdʒɪŋ/", vn: "làm nản lòng, gây mất tinh thần", tick: false },
+  { en: "confidence (n) /ˈkɒnfɪdəns/", vn: "sự tự tin, lòng tin vào năng lực bản thân (tính từ: confident)", tick: false },
+  { en: "development (n) /dɪˈveləpmənt/", vn: "sự phát triển, tiến hóa mở rộng", tick: false },
+  { en: "enhance (v) /ɪnˈhɑːns/", vn: "nâng cao, cải thiện, tăng giá trị (kỹ năng/năng lực)", tick: false },
+  { en: "neglect (v/n) /nɪˈɡlekt/", vn: "bỏ bê, lơ là, bỏ mặc; sự lơ là", tick: false },
+  { en: "reform (v/n) /rɪˈfɔːm/", vn: "cải cách, đổi mới hệ thống; cuộc cải cách giáo dục", tick: false },
+  { en: "provoke (v) /prəˈvəʊk/", vn: "khơi mào, kích động phản ứng tiêu cực (ví dụ: provoke resistance)", tick: false },
+  { en: "resistance (n) /rɪˈzɪstəns/", vn: "sự kháng cự, phản kháng, chống đối thay đổi (động từ: resist)", tick: false },
+  { en: "continuity (n) /ˌkɒntɪˈnjuːəti/", vn: "tính liên tục, kế thừa liền mạch (tính từ: continuous)", tick: false },
+  { en: "integrity (n) /ɪnˈteɡrəti/", vn: "sự chính trực, liêm chính (ví dụ: academic integrity - liêm chính học thuật)", tick: false },
+  { en: "plagiarism (n) /ˈpleɪdʒərɪzəm/", vn: "sự đạo văn, ăn cắp ý tưởng/ngôn từ (động từ: plagiarize)", tick: false },
+  { en: "prevalent (adj) /ˈprevələnt/", vn: "thịnh hành, phổ biến rộng khắp (danh từ: prevalence)", tick: false },
+  { en: "rigid (adj) /ˈrɪdʒɪd/", vn: "cứng nhắc, rập khuôn, thiếu linh hoạt (danh từ: rigidity)", tick: false },
+  { en: "stifle (v) /ˈstaɪfl/", vn: "kìm hãm, bóp nghẹt, dập tắt (ví dụ: stifle creativity)", tick: false },
+  ],
+"19B": [
+  { en: "objectivity (n) /ˌɒbdʒekˈtɪvəti/", vn: "tính khách quan, không định kiến (tính từ: objective)", tick: false },
+  { en: "autonomous (adj) /ɔːˈtɒnəməs/", vn: "tự chủ, tự trị, độc lập (danh từ: autonomy)", tick: false },  
+  { en: "autonomy (n) /ɔːˈtɒnəmi/", vn: "quyền tự chủ, năng lực tự quyết độc lập", tick: false },
+  { en: "constrain (v) /kənˈstreɪn/", vn: "gò bó, ép buộc, hạn chế tự do hành động (danh từ: constraint)", tick: false },
+  { en: "uneven (adj) /ʌnˈiːvn/", vn: "không đồng đều, khập khiễng (sự phát triển/chất lượng)", tick: false },
+  { en: "perpetuate (v) /pəˈpetʃueɪt/", vn: "duy trì kéo dài lâu dài (quan niệm sai lầm/tệ nạn)", tick: false },
+  { en: "equity (n) /ˈekwəti/", vn: "tính công bằng thực chất dựa trên nhu cầu (phân biệt: equality)", tick: false },
+  { en: "competitive (adj) /kəmˈpetətɪv/", vn: "mang tính cạnh tranh, đua tranh gay gắt (động từ: compete)", tick: false },
+  { en: "sufficient (adj) /səˈfɪʃnt/", vn: "đủ, đầy đủ lượng cần thiết (bằng nghĩa: enough)", tick: false },
+  { en: "diminish (v) /dɪˈmɪnɪʃ/", vn: "suy giảm, làm giảm bớt giá trị/kích thước (bằng nghĩa: reduce)", tick: false },
+  { en: "burnout (n) /ˈbɜːnaʊt/", vn: "sự kiệt sức, suy sụp tinh thần do quá tải kéo dài", tick: false },
+  { en: "erode (v) /ɪˈrəʊd/", vn: "xói mòn, làm suy giảm dần (niềm tin/giá trị; danh từ: erosion)", tick: false },
+  { en: "pathway (n) /ˈpɑːθweɪ/", vn: "con đường phát triển, lộ trình định hướng (ví dụ: career pathway)", tick: false },
+  { en: "deter (v) /dɪˈtɜː(r)/", vn: "ngăn chặn, làm chùn bước, cản trở (danh từ: deterrent)", tick: false },
+  { en: "deterrent (n) /dɪˈterənt/", vn: "rào cản, biện pháp ngăn đe, thứ làm chùn bước (động từ: deter)", tick: false },
+{ en: "sluggish (adj) /ˈslʌɡɪʃ/", vn: "chậm chạp, uể oải, trì trệ", tick: false },
+  { en: "lazy (adj) /ˈleɪzi/", vn: "lười biếng (danh từ: laziness)", tick: false },
+  { en: "a bit (adv phr) /ə bɪt/", vn: "một chút, hơi hơi", tick: false },
+  { en: "energetic (adj) /ˌenəˈdʒetɪk/", vn: "tràn đầy năng lượng, mạnh mẽ (danh từ: energy)", tick: false },
+  { en: "intelligent (adj) /ɪnˈtelɪdʒənt/", vn: "thông minh, sáng dạ (danh từ: intelligence)", tick: false },
+  { en: "lively (adj) /ˈlaɪvli/", vn: "sinh động, đầy sức sống, hoạt bát", tick: false },
+  { en: "dreadful (adj) /ˈdredfl/", vn: "khủng khiếp, tồi tệ (bằng nghĩa: terrible)", tick: false },
+  { en: "dread (v/n) /dred/", vn: "kinh sợ, khiếp sợ; nỗi sợ hãi", tick: false },
+  { en: "on vacation/holiday (prep phr)", vn: "đang đi nghỉ mát, đang trong kỳ nghỉ", tick: false },
+  { en: "terrible (adj) /ˈterəbl/", vn: "khủng khiếp, tồi tệ", tick: false },
+  { en: "audience (n) /ˈɔːdiəns/", vn: "khán giả, thính giả (nghe nhìn trong hội trường/sân khấu)", tick: false },
+  { en: "dismal (adj) /ˈdɪzməl/", vn: "ảm đạm, u sầu, tồi tệ (thành tích/thời tiết)", tick: false },
+  { en: "result (n/v) /rɪˈzʌlt/", vn: "kết quả; dẫn đến (đi với giới từ: result in)", tick: false },
+  { en: "disappointed (adj) /ˌdɪsəˈpɔɪntɪd/", vn: "bị thất vọng (cấu trúc: be disappointed with/at)", tick: false },
+  { en: "excellent (adj) /ˈeksələnt/", vn: "xuất sắc, ưu tú (danh từ: excellence)", tick: false },
+  { en: "courteous (adj) /ˈkɜːtiəs/", vn: "lịch thiệp, nhã nhặn (danh từ: courtesy)", tick: false },
+  { en: "waiter (n) /ˈweɪtə(r)/", vn: "bồi bàn nam, nhân viên phục vụ nam", tick: false },
+  { en: "elderly (adj) /ˈeldəli/", vn: "cao tuổi, già cả (từ lịch sự thay cho old)", tick: false },
+  { en: "neighbor (n) /ˈneɪbə(r)/", vn: "hàng xóm, người láng giềng", tick: false },
+  { en: "rude (adj) /ruːd/", vn: "thô lỗ, cộc cằn, vô lễ", tick: false },
+  { en: "polite (adj) /pəˈlaɪt/", vn: "lịch sự, lễ phép (danh từ: politeness)", tick: false },
+  { en: "impolite (adj) /ˌɪmpəˈlaɪt/", vn: "vô lễ, bất lịch sự", tick: false },
+  { en: "selfish (adj) /ˈselfɪʃ/", vn: "ích kỷ (danh từ: selfishness)", tick: false },
+  { en: "faulty (adj) /ˈfɔːlti/", vn: "bị lỗi, có khuyết điểm (hàng hóa/thiết bị)", tick: false },
+  { en: "suddenly (adv) /ˈsʌdənli/", vn: "đột ngột, bỗng nhiên", tick: false },
+  { en: "drain (v/n) /dreɪn/", vn: "rút cạn, làm kiệt quệ; ống thoát nước", tick: false },
+  { en: "peak (n/adj/v) /piːk/", vn: "đỉnh, chóp, cao điểm; đạt đỉnh", tick: false },
+  { en: "arduous (adj) /ˈɑːdʒuəs/", vn: "gian khổ, cực nhọc, đầy thử thách khó khăn", tick: false },
+  { en: "give up (v phr) /ɡɪv ʌp/", vn: "từ bỏ, bỏ cuộc", tick: false },
+  { en: "pleasant (adj) /ˈpleznt/", vn: "dễ chịu, ôn hòa, thân thiện (thời tiết/con người)", tick: false },
+  { en: "dilapidated (adj) /dɪˈlæpɪdeɪtɪd/", vn: "đổ nát, hoang tàn, xập xệ (nhà cửa/công trình)", tick: false },
+  { en: "resort (n/v) /rɪˈzɔːt/", vn: "khu nghỉ dưỡng; phải dùng đến (cấu trúc: resort to sth)", tick: false },
+  { en: "luxury (n/adj) /ˈlʌkʃəri/", vn: "sự xa xỉ, sang trọng; thuộc về xa xỉ (tính từ: luxurious)", tick: false },
+  { en: "ruin (v/n) /ˈruːɪn/", vn: "hủy hoại, làm sụp đổ; sự suy tàn, đống đổ nát", tick: false },
+  { en: "ruined (adj) /ˈruːɪnd/", vn: "bị tàn phá, bị hỏng hoàn toàn", tick: false },
+  { en: "astute (adj) /əˈstjuːt/", vn: "sắc sảo, tinh khôn, nhạy bén", tick: false },
+  { en: "science (n) /ˈsaɪəns/", vn: "khoa học (tính từ: scientific)", tick: false },
+  { en: "feeble (adj) /ˈfiːbl/", vn: "yếu ớt, nhu nhược, không có lực", tick: false },
+  { en: "flu (n) /fluː/", vn: "bệnh cúm (viết tắt của influenza)", tick: false },
+  { en: "lift (v/n) /lɪft/", vn: "nâng lên, nhấc lên; thang máy; sự đi nhờ xe", tick: false },
+  ],
+
+"19C": [
+  { en: "healthy (adj) /ˈhelθi/", vn: "khỏe mạnh, tốt cho sức khỏe (danh từ: health)", tick: false },
+  { en: "impeccable (adj) /ɪmˈpekəbl/", vn: "hoàn hảo, không có tì vết, không chê vào đâu được", tick: false },
+  { en: "perennial (adj) /pəˈreniəl/", vn: "kéo dài mãi, lặp lại quanh năm, vĩnh cửu", tick: false },
+  { en: "traffic jam (n) /ˈtræfɪk dʒæm/", vn: "sự kẹt xe, tắc nghẽn giao thông", tick: false },
+  { en: "angry (adj) /ˈæŋɡri/", vn: "tức giận, phẫn nộ (danh từ: anger)", tick: false },
+  { en: "temporary (adj) /ˈtemprəri/", vn: "tạm thời, nhất thời (trái nghĩa: permanent)", tick: false },
+  { en: "permanent (adj) /ˈpɜːmənənt/", vn: "vĩnh viễn, lâu dài, cố định", tick: false },
+  { en: "wane (v/n) /weɪn/", vn: "suy yếu, giảm dần sức mạnh/mức độ (trăng khuyết)", tick: false },
+  { en: "cautious (adj) /ˈkɔːʃəs/", vn: "thận trọng, cẩn thận (danh từ: caution)", tick: false },
+  { en: "at the outset (idiom)", vn: "ngay từ đầu, lúc khởi đầu", tick: false },
+  { en: "launch (v/n) /lɔːntʃ/", vn: "bắt đầu, khai trương, hạ thủy, tung ra sản phẩm", tick: false },
+  { en: "enormous (adj) /ɪˈnɔːməs/", vn: "to lớn, khổng lồ, cực kỳ nhiều", tick: false },
+  { en: "optimistic (adj) /ˌɒptɪˈmɪstɪk/", vn: "lạc quan (cấu trúc: optimistic about sth)", tick: false },
+  { en: "optimism (n) /ˈɒptɪmɪzəm/", vn: "sự lạc quan, tinh thần lạc quan", tick: false },
+  { en: "ambitious (adj) /æmˈbɪʃəs/", vn: "tham vọng, hoài bão (danh từ: ambition)", tick: false },
+  { en: "projection (n) /prəˈdʒekʃn/", vn: "sự dự báo, ước tính số liệu tương lai (động từ: project)", tick: false },
+  { en: "dominate (v) /ˈdɒmɪneɪt/", vn: "thống trị, chi phối, chiếm ưu thế (danh từ: dominance)", tick: false },
+  { en: "mount (v) /maʊnt/", vn: "tăng dần lên, tích lũy dâng cao (áp lực/chi phí); leo lên", tick: false },
+  { en: "repeatedly (adv) /rɪˈpiːtɪdli/", vn: "lặp đi lặp lại nhiều lần", tick: false },
+  { en: "enthusiastic (adj) /ɪnˌθjuːziˈæstɪk/", vn: "nhiệt tình, hào hứng (cấu trúc: enthusiastic about)", tick: false },
+  { en: "enthusiasm (n) /ɪnˈθjuːziæzəm/", vn: "sự nhiệt huyết, lòng nhiệt tình", tick: false },
+  { en: "gradual (adj) /ˈɡrædʒuəl/", vn: "dần dần, từng bước một (trạng từ: gradually)", tick: false },
+  { en: "senior (adj/n) /ˈsiːniə(r)/", vn: "lớn tuổi hơn, cấp trên; người có thâm niên", tick: false },
+  { en: "junior (adj/n) /ˈdʒuːniə(r)/", vn: "nhỏ tuổi hơn, cấp dưới; người mới", tick: false },
+  { en: "worth (adj/n) /wɜːθ/", vn: "đáng giá, xứng đáng (cấu trúc: be worth + V-ing)", tick: false },
+  { en: "sustain (v) /səˈsteɪn/", vn: "duy trì, chống đỡ, chịu đựng tổn thất (tính từ: sustainable)", tick: false },
+  { en: "eventually (adv) /ɪˈventʃuəli/", vn: "cuối cùng thì, rốt cuộc", tick: false },
+  { en: "intensify (v) /ɪnˈtensɪfaɪ/", vn: "tăng cường, làm dữ dội/mạnh mẽ thêm (danh từ: intensity)", tick: false },
+  { en: "persist (v) /pəˈsɪst/", vn: "kiên trì, bền bỉ; vẫn dai dẳng tồn tại (tính từ: persistent)", tick: false },
+  { en: "revive (v) /rɪˈvaɪv/", vn: "hồi sinh, phục hưng, làm sống lại (danh từ: revival)", tick: false },
+  { en: "hesitate (v) /ˈhezɪteɪt/", vn: "do dự, ngần ngại, lưỡng lự", tick: false },
+  { en: "hesistant (adj) /ˈhezɪtənt/", vn: "do dự, ngập ngừng (danh từ: hesitation)", tick: false },
+  { en: "vigilant (adj) /ˈvɪdʒɪlənt/", vn: "cảnh giác, đề phòng thận trọng (danh từ: vigilance)", tick: false },
+  { en: "reckless (adj) /ˈrekləs/", vn: "liều lĩnh, táo tợn, coi thường hiểm nguy", tick: false },
+  { en: "conservative (adj) /kənˈsɜːvətɪv/", vn: "bảo thủ, thận trọng (danh từ: conservatism)", tick: false },
+  { en: "policy (n) /ˈpɒləsi/", vn: "chính sách, quy định của cơ quan/nhà nước", tick: false },
+  { en: "aimed at (v phr) /eɪmd æt/", vn: "nhằm vào, hướng tới mục tiêu gì", tick: false },
+  { en: "tighten (v) /ˈtaɪtn/", vn: "siết chặt, làm chặt chẽ hơn (luật lệ/kiểm soát)", tick: false },
+  { en: "standard (n/adj) /ˈstændəd/", vn: "tiêu chuẩn, quy chuẩn; thông thường", tick: false },
+  { en: "applaud (v) /əˈplɔːd/", vn: "vỗ tay khen ngợi; ca ngợi hoan nghênh (danh từ: applause)", tick: false },
+  { en: "argue (v) /ˈɑːɡjuː/", vn: "tranh cãi; đưa ra lập luận (danh từ: argument)", tick: false },
+  { en: "stringent (adj) /ˈstrɪndʒənt/", vn: "nghiêm ngặt, khắt khe, chặt chẽ (luật lệ/nội quy)", tick: false },
+  { en: "fair (adj) /feə(r)/", vn: "công bằng, hợp lý; hội chợ", tick: false },
+  { en: "accountability (n) /əˌkaʊntəˈbɪləti/", vn: "trách nhiệm giải trình, nghĩa vụ chịu trách nhiệm", tick: false },
+  { en: "warn (v) /wɔːn/", vn: "cảnh báo, răn đe trước (cấu trúc: warn sb about/against)", tick: false },
+  { en: "overly (adv) /ˈəʊvəli/", vn: "quá mức, thái quá (ví dụ: overly sensitive)", tick: false },
+  { en: "discourage (v) /dɪsˈkʌrɪdʒ/", vn: "làm nản lòng, ngăn cản ai làm gì (trái nghĩa: encourage)", tick: false },
+  { en: "leave room for (idiom)", vn: "chừa chỗ cho, tạo cơ hội/khả năng cho cái gì xảy ra", tick: false },
+  { en: "experiment (n/v) /ɪkˈsperɪmənt/", vn: "thí nghiệm, cuộc thử nghiệm; làm thí nghiệm", tick: false },
+  { en: "experimentation (n) /ɪkˌsperɪmenˈteɪʃn/", vn: "quá trình thí nghiệm, việc thử nghiệm mới", tick: false },
+  { en: "outcome (n) /ˈaʊtkʌm/", vn: "kết quả cuối cùng, hệ quả của một quá trình", tick: false },
+  { en: "uniform (adj/n) /ˈjuːnɪfɔːm/", vn: "đồng đều, thống nhất; đồng phục", tick: false },
+  { en: "fixed (adj) /fɪkst/", vn: "cố định, không thay đổi (ví dụ: fixed price)", tick: false },
+  { en: "optional (adj) /ˈɒpʃənl/", vn: "tùy chọn, không bắt buộc (động từ: opt)", tick: false },
+  { en: "moderate (adj/v) /ˈmɒdərət/", vn: "ôn hòa, vừa phải; tiết chế, điều tiết", tick: false },
+  { en: "restrain (v) /rɪˈstreɪn/", vn: "kiềm chế, cản trở, giữ lại (danh từ: restraint)", tick: false },
+  { en: "undermine (v) /ˌʌndəˈmaɪn/", vn: "hủy hoại ngầm, làm suy yếu dần dần", tick: false },
+
+  ],
+
+
+20: [
+
+  ],
+21: [
+
+  ],
+22: [
+
+  ],
+23: [
+
+  ],
 
 };
 
