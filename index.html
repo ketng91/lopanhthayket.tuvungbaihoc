@@ -876,13 +876,75 @@ css
 @media(max-width:600px) {
 
   .frog-game-section {
-    width: 94%;
+    width: 100%;
+    max-width: 100%;
+    margin: 40px auto 50px;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 
   .frog-game {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     height: 500px;
     border-radius: 20px;
+    box-sizing: border-box;
   }
+
+  .frog-question {
+    top: 55px;
+    font-size: 21px;
+    min-width: 0;
+    width: 72%;
+    padding: 11px 15px;
+  }
+
+  .fly-zone {
+    inset: 120px 8px 140px;
+  }
+
+  .fly-body {
+    min-width: 92px;
+    max-width: 135px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border-width: 2px;
+  }
+
+  .vocab-fly {
+    min-height: 55px;
+  }
+
+  .fly-body span {
+    pointer-events: none;
+  }
+
+  .fly-face {
+    font-size: 21px;
+  }
+
+  .frog-character {
+    transform: translateX(-50%) scale(.82);
+  }
+
+  .frog-character.grow1 {
+    transform: translateX(-50%) scale(.90);
+  }
+
+  .frog-character.grow2 {
+    transform: translateX(-50%) scale(.98);
+  }
+
+  .frog-character.grow3 {
+    transform: translateX(-50%) scale(1.06);
+  }
+
+  .lily-pad {
+    width: 205px;
+  }
+}
 
   .frog-question {
     top: 55px;
