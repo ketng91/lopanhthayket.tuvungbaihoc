@@ -939,6 +939,51 @@ css
 }
 
 
+.frog-start-icon {
+  font-size: 70px;
+  margin-bottom: 8px;
+  animation: frogStartBounce 1.2s ease-in-out infinite;
+}
+
+@keyframes frogStartBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.frog-restart {
+  border: none;
+  cursor: pointer;
+  padding: 13px 30px;
+  border-radius: 999px;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  background: #fff;
+  color: #218c74;
+
+  box-shadow:
+    0 5px 0 rgba(0,0,0,.15),
+    0 8px 20px rgba(0,0,0,.15);
+
+  transition: .18s ease;
+}
+
+.frog-restart:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.frog-restart:active {
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 0 rgba(0,0,0,.15);
+}
+
 </style>
 </head>
 
@@ -1124,27 +1169,31 @@ Anh ➜ Việt
     </div>
 
     <!-- END / WIN -->
-    <div class="frog-message" id="frogMessage">
+    <div class="frog-message show" id="frogMessage">
+  <div class="frog-message-box">
 
-      <div class="frog-message-box">
+    <div class="frog-start-icon">🐸</div>
 
-        <h2 id="frogMessageTitle">
-          🎉 Tuyệt vời!
-        </h2>
+    <h2 id="frogMessageTitle">
+      Frog Vocabulary Hunt
+    </h2>
 
-        <p id="frogMessageText">
-          Bạn đã hoàn thành!
-        </p>
+    <p id="frogMessageText">
+      🪰 Hãy chọn đúng con ruồi mang từ tiếng Anh phù hợp với nghĩa được cho.<br><br>
+      🔥 Đúng liên tiếp 10 câu để chiến thắng!<br>
+      ❌ Sai 2 lần liên tiếp sẽ kết thúc game.
+    </p>
 
-        <button
-          class="frog-restart"
-          onclick="startFrogGame()">
-          🔄 Chơi lại
-        </button>
+    <button
+      class="frog-restart"
+      id="frogStartBtn"
+      onclick="startFrogGame()">
+      ▶️ START GAME
+    </button>
 
-      </div>
+  </div>
+</div>
 
-    </div>
 
   </div>
 
@@ -4121,19 +4170,25 @@ function startFrogGame() {
 
 
   // =====================================
-  // TẠO MỘT VÒNG TỪ VỰNG MỚI
+  // TẠO BỘ CÂU HỎI MỚI
   // =====================================
 
   createFrogQuestionDeck();
 
 
-  // Đóng popup
+  // =====================================
+  // ĐÓNG MÀN HÌNH START / GAME OVER
+  // =====================================
+
   document
     .getElementById("frogMessage")
     .classList.remove("show");
 
 
-  // Reset kích thước ếch
+  // =====================================
+  // RESET ẾCH
+  // =====================================
+
   const frog =
     document.getElementById("frogCharacter");
 
@@ -4146,50 +4201,22 @@ function startFrogGame() {
   );
 
 
-  // Reset điểm
+  // =====================================
+  // RESET SCORE
+  // =====================================
+
   updateFrogScore();
 
 
-  // Bắt đầu câu đầu tiên
+  // =====================================
+  // BẮT ĐẦU CÂU HỎI ĐẦU TIÊN
+  // =====================================
+
   nextFrogQuestion();
 }
 
-/* =========================================================
-   KHỞI ĐỘNG KHI TRANG LOAD
-   ========================================================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
-
-    setTimeout(() => {
-
-      startFrogGame();
-
-    }, 300);
-
-  }
-);
 
 
-/* =========================================================
-   ĐỔI BÀI → RESET GAME
-   ========================================================= */
-
-const originalLoadList =
-  window.loadList;
-
-window.loadList = function() {
-
-  originalLoadList();
-
-  setTimeout(() => {
-
-    startFrogGame();
-
-  }, 100);
-
-};
 </script>
 
 
